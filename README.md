@@ -25,3 +25,6 @@ In the future, I will implement the following functions:
 
 ## API
 
+## Reference
+1. [手写服务器webserver](https://www.bilibili.com/video/BV1rt411D7ig)
+
