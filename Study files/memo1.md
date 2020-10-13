@@ -14,7 +14,7 @@
 
 2. 动态的创建对象
 
-   getConstructor().newInstance()
+   get Constructor().newInstance()
 
    创建构造器
 
@@ -44,5 +44,5 @@ extensible markup language，可拓展标记语言
 
   4. 加载处理器
 
-<img src="Untitled/IMG_D946C38E4E7A-1.jpeg" alt="IMG_D946C38E4E7A-1" style="zoom:50%;" />
+<img src="memo1/IMG_D946C38E4E7A-1.jpeg" alt="IMG_D946C38E4E7A-1" style="zoom:50%;" />
 
