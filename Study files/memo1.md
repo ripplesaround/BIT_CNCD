@@ -46,3 +46,30 @@ extensible markup language，可拓展标记语言
 
 <img src="memo1/IMG_D946C38E4E7A-1.jpeg" alt="IMG_D946C38E4E7A-1" style="zoom:50%;" />
 
+> 一个类要加上空构造
+
+xml可能存在空的标签，和xml文件中的空格有关
+
+ 
+
+数据解析大致上都是同样的思路
+
+解析之后就要有反射
+
+- [ ] 代码
+
+#### HTML
+
+get
+
+post
+
+<img src="memo1/image-20201015154039780.png" alt="image-20201015154039780" style="zoom:100%;" />
+
+#### HTTP协议
+
+超文本传输协议
+
+<img src="memo1/image-20201015154705232.png" alt="image-20201015154705232" style="zoom:150%;" />
+
+ 
