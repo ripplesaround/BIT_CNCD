@@ -2,7 +2,7 @@
 目标：
 1. 使用ServerSocket建立与浏览器的链接，获取请求协议
 2. 返回响应协议
-
+3. 封装响应信息
  */
 
 import java.io.BufferedWriter;
@@ -50,45 +50,60 @@ public class SimpleServer{
             String requestInfo = new String(datas,0, len);
 //            System.out.println(requestInfo);
 
-            StringBuilder content = new StringBuilder();
-            content.append("<html>");
-            content.append("<head>");
-            content.append("<title>");
-            content.append("服务器响应成功");
-            content.append("</title>");
-            content.append("</head>");
-            content.append("<body>");
-            content.append("测试 test");
-            content.append("</body>");
-            content.append("</html>");
-            int content_len = content.toString().getBytes().length; //字节数
+            Response response = new Response(client);
+//            StringBuilder content = new StringBuilder();
+//            content.append("<html>");
+//            content.append("<head>");
+//            content.append("<title>");
+//            content.append("服务器响应成功");
+//            content.append("</title>");
+//            content.append("</head>");
+//            content.append("<body>");
+//            content.append("测试 test");
+//            content.append("</body>");
+//            content.append("</html>");
+            //关注了内容
+            response.print("<html>");
+            response.print("<head>");
+            response.print("<title>");
+            response.print("服务器响应成功");
+            response.print("</title>");
+            response.print("</head>");
+            response.print("<body>");
+            response.print("测试 very good");
+            response.print("</body>");
+            response.print("</html>");
+
+            //关注了状态码
+            response.pushToBrowser(200);
+//            int content_len = content.toString().getBytes().length; //字节数
             // 返回
-            StringBuilder responseInfo = new StringBuilder();
-            String blank = " ";
-            String CRLF = "\r\n";
-            //1、 响应行： HTTP/1.1 200 OK  注意有空格
-            responseInfo.append("HTTP/1.1").append(blank);
-            responseInfo.append(200).append(blank);
-            responseInfo.append("OK").append(CRLF);
-            //2、 响应头：最后有空行
-            /*
-            Data: Sat,17Oct200904:25:57GMT
-            Server:test Server/0.0.1;charset=GBK
-            Content-type:text/html
-            Content-length:39725426
-             */
-            responseInfo.append("Date:").append(new Date()).append(CRLF);
-            responseInfo.append("Server:").append("test Server/0.0.1;charset=gbk").append(CRLF);
-            responseInfo.append("Content-type:text/html").append(CRLF);
-            responseInfo.append("Content-length:").append(content_len).append(CRLF);
-            responseInfo.append(CRLF);
-            //3、 正文
-            responseInfo.append(content.toString());
-            //写出到客户端
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
-            bw.write(responseInfo.toString());
-            bw.flush();
-            System.out.println(responseInfo);
+//            StringBuilder responseInfo = new StringBuilder();
+//            String blank = " ";
+//            String CRLF = "\r\n";
+//            //1、 响应行： HTTP/1.1 200 OK  注意有空格
+//            responseInfo.append("HTTP/1.1").append(blank);
+//            responseInfo.append(200).append(blank);
+//            responseInfo.append("OK").append(CRLF);
+//            //2、 响应头：最后有空行
+//            /*
+//            Data: Sat,17Oct200904:25:57GMT
+//            Server:test Server/0.0.1;charset=GBK
+//            Content-type:text/html
+//            Content-length:39725426
+//             */
+//            responseInfo.append("Date:").append(new Date()).append(CRLF);
+//            responseInfo.append("Server:").append("test Server/0.0.1;charset=gbk").append(CRLF);
+//            responseInfo.append("Content-type:text/html").append(CRLF);
+//            responseInfo.append("Content-length:").append(content_len).append(CRLF);
+//            responseInfo.append(CRLF);
+//            //3、 正文
+//            responseInfo.append(content.toString());
+//            //写出到客户端
+//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
+//            bw.write(responseInfo.toString());
+//            bw.flush();
+//            System.out.println(responseInfo);
 
         } catch (java.lang.Exception e) {
             e.printStackTrace();
