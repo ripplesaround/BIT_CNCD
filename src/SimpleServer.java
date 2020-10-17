@@ -5,12 +5,8 @@
 3. 封装响应信息
  */
 
-import java.io.BufferedWriter;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
 
 public class SimpleServer{
     private ServerSocket serversocket;
@@ -59,7 +55,7 @@ public class SimpleServer{
             response.print("</title>");
             response.print("</head>");
             response.print("<body>");
-            response.print("测试 very good");
+            response.print("测试 very good " + request.getParameterValue("uname"));
             response.print("</body>");
             response.print("</html>");
             //关注了状态码
