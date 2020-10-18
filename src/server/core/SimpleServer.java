@@ -1,4 +1,4 @@
-/*
+package server.core;/*
 目标：
 1. 使用ServerSocket建立与浏览器的链接，获取请求协议
 2. 返回响应协议

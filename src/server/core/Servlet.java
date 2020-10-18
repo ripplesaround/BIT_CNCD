@@ -1,4 +1,4 @@
-/*
+package server.core;/*
 服务器小脚本接口
  */
 

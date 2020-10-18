@@ -2,11 +2,11 @@
 <web-app>
     <servlet>
         <servlet-name>reg</servlet-name>
-        <servlet-class>RegisterServlet</servlet-class>
+        <servlet-class>user.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>LoginServlet</servlet-class>
+        <servlet-class>user.LoginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -21,7 +21,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>others</servlet-name>
-        <servlet-class>OthersServlet</servlet-class>
+        <servlet-class>user.OthersServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>others</servlet-name>

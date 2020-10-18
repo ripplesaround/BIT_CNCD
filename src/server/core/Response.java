@@ -1,3 +1,5 @@
+package server.core;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;

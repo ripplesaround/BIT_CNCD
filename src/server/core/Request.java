@@ -1,3 +1,5 @@
+package server.core;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -38,7 +40,7 @@ public class Request {
     public Request(InputStream is) {
         parameterMap = new HashMap<String, List<String>>();
         // 应该逐行读取，这里一次性读取了
-        byte[] datas = new byte[1024*1024];
+        byte[] datas = new byte[1024*1024*1024];
         int len;
 //        String requestInfo;
         try {
