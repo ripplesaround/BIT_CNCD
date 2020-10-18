@@ -6,8 +6,8 @@ This task is just a simple **multi-threaded Web server**, which is capable of de
 In the future, I will implement the following functions:
 
 - **GET** method
-  - [ ] Default page
-  - [ ] Specific page
+  - [x] Default page
+  - [x] Specific page
 
 - **POST** method 
 
