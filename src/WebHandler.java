@@ -49,11 +49,11 @@ public class WebHandler extends DefaultHandler {
         if(null!=qName){
             if(qName.equals("servlet")){
                 entities.add(entity);
-                System.out.println("end qname-->"+qName);
+//                System.out.println("end qname-->"+qName);
             }else if(qName.equals("servlet-mapping")){
-                System.out.println("hello");
+//                System.out.println("hello");
                 mappings.add(mapping);
-                System.out.println("end qname-->"+qName);
+//                System.out.println("end qname-->"+qName);
             }
         }
         tag = null;
@@ -65,7 +65,7 @@ public class WebHandler extends DefaultHandler {
         if(contents.length()<1){
             return;
         }
-        System.out.println("content-->"+contents+" isMapping-->"+isMapping);
+//        System.out.println("content-->"+contents+" isMapping-->"+isMapping);
         if(null!=tag){
              if(isMapping){
                  if(tag.equals("servlet-name")){
