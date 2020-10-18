@@ -29,6 +29,7 @@ public class SimpleServer{
         } catch (java.lang.Exception e) {
             e.printStackTrace();
             System.out.println("服务器启动失败");
+            stop();
         }
     }
     //停止服务
@@ -43,7 +44,7 @@ public class SimpleServer{
     }
     //接受连接处理
     public void receive(){
-        while (true) {
+        while (isRunning) {
             Socket client;
             try {
                 client = serversocket.accept();
