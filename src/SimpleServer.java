@@ -38,26 +38,22 @@ public class SimpleServer{
         try {
             client = serversocket.accept();
             System.out.println("一个客户端已建立了连接......");
-//            //获取请求协议
-//            InputStream is = client.getInputStream();
-//            // 应该逐行读取，这里一次性读取了
-//            byte[] datas = new byte[1024*1024];
-//            int len = is.read(datas);
-//            String requestInfo = new String(datas,0, len);
             Request request = new Request(client);
 
             Response response = new Response(client);
             //关注了内容
-            response.print("<html>");
-            response.print("<head>");
-            response.print("<title>");
-            response.print("服务器响应成功");
-            response.print("</title>");
-            response.print("</head>");
-            response.print("<body>");
-            response.print("测试 very good " + request.getParameterValue("uname"));
-            response.print("</body>");
-            response.print("</html>");
+            //加入了Servlet，解耦了业务代码
+            Servlet servlet = null;
+            if(request.getUrl().equals("login")){
+                servlet = new LoginServlet();
+            }
+            else if(request.getUrl().equals("reg")){
+                servlet = new RegisterServlet();
+            }
+            else{
+                //todo
+            }
+            servlet.service(request,response);
             //关注了状态码
             response.pushToBrowser(200);
 
