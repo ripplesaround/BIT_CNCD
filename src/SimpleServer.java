@@ -43,19 +43,25 @@ public class SimpleServer{
             Response response = new Response(client);
             //关注了内容
             //加入了Servlet，解耦了业务代码
-            Servlet servlet = null;
-            if(request.getUrl().equals("login")){
-                servlet = new LoginServlet();
+            Servlet servlet = WebApp.getServletFromUrl(request.getUrl());
+            if(null!=servlet){
+                servlet.service(request,response);
+                //关注了状态码
+                response.pushToBrowser(200);
             }
-            else if(request.getUrl().equals("reg")){
-                servlet = new RegisterServlet();
+            else {
+                //error
+                response.pushToBrowser(404);
             }
-            else{
-                //todo
-            }
-            servlet.service(request,response);
-            //关注了状态码
-            response.pushToBrowser(200);
+//            if(request.getUrl().equals("login")){
+//                servlet = new LoginServlet();
+//            }
+//            else if(request.getUrl().equals("reg")){
+//                servlet = new RegisterServlet();
+//            }
+//            else{
+//                //todo
+//            }
 
         } catch (java.lang.Exception e) {
             e.printStackTrace();

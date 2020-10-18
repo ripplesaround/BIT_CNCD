@@ -63,8 +63,8 @@ public class Request {
         int startindex = this.requestInfo.indexOf("/") + 1;
         //2 获取HTTP/的位置
         int endindex = this.requestInfo.indexOf("HTTP") ;
-        //3 分割字符串
-        this.url = this.requestInfo.substring(startindex,endindex); //会不会有个空格
+        //3 分割字符串 注意空格
+        this.url = this.requestInfo.substring(startindex,endindex).trim(); //会不会有个空格
 //        System.out.println(url);
         //4 获取？的位置
         int queryidx = this.url.indexOf("?");
