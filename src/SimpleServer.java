@@ -5,11 +5,13 @@
 3. 封装响应信息
  */
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SimpleServer{
     private ServerSocket serversocket;
+    private boolean isRunning;
     public static void main(String[] args){
         SimpleServer server = new SimpleServer();
         server.start();
@@ -22,6 +24,7 @@ public class SimpleServer{
     public void start(){
         try {
             serversocket = new ServerSocket(8888);
+            isRunning = true;
             receive();
         } catch (java.lang.Exception e) {
             e.printStackTrace();
@@ -30,42 +33,27 @@ public class SimpleServer{
     }
     //停止服务
     public void stop(){
-
+        isRunning = false;
+        try {
+            this.serversocket.close();
+            System.out.println("服务器已停止");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //接受连接处理
     public void receive(){
-        Socket client;
-        try {
-            client = serversocket.accept();
-            System.out.println("一个客户端已建立了连接......");
-            Request request = new Request(client);
-
-            Response response = new Response(client);
-            //关注了内容
-            //加入了Servlet，解耦了业务代码
-            Servlet servlet = WebApp.getServletFromUrl(request.getUrl());
-            if(null!=servlet){
-                servlet.service(request,response);
-                //关注了状态码
-                response.pushToBrowser(200);
+        while (true) {
+            Socket client;
+            try {
+                client = serversocket.accept();
+                System.out.println("一个客户端已建立了连接......");
+                // 多线程
+                new Thread(new Dispatcher(client)).start();
+            } catch (java.lang.Exception e) {
+                e.printStackTrace();
+                System.out.println("客户端错误");
             }
-            else {
-                //error
-                response.pushToBrowser(404);
-            }
-//            if(request.getUrl().equals("login")){
-//                servlet = new LoginServlet();
-//            }
-//            else if(request.getUrl().equals("reg")){
-//                servlet = new RegisterServlet();
-//            }
-//            else{
-//                //todo
-//            }
-
-        } catch (java.lang.Exception e) {
-            e.printStackTrace();
-            System.out.println("客户端错误");
         }
     }
 }
